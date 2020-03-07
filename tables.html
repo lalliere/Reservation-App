@@ -66,66 +66,66 @@
             </p>
         </div>
     </footer>
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    function runTableQuery() {
-        $.ajax({ url: "/api/tables", method: "GET" })
-        .then(function(tableData) {
-            console.log(tableData);
-            console.log("-------------------------");
+        function runTableQuery() {
+            $.ajax({ url: "/api/tables", method: "GET" })
+            .then(function (tableData) {
+                console.log(tableData);
+                console.log("-------------------------");
 
-            for (var i=0; i < tableData.length; i++) {
-                var tableList = $("#tableList");
+                for (var i = 0; i < tableData.length; i++) {
+                    var tableList = $("#tableList");
 
-                var listItem = $("<li class='list-group-item mt-4'>");
+                    var listItem = $("<li class='list-group-item mt-4'>");
 
-                listItem.append(
-                    $("<h2>").text("Table #" + (i + 1)),
-                    $("<hr>"),
-                    $("<h2>").text("Name: " + tableData[i].customerName),
-                );
+                    listItem.append(
+                        $("<h2>").text("Table #" + (i + 1)),
+                        $("<hr>"),
+                        $("<h2>").text("Name: " + tableData[i].customerName),
+                    );
 
-                tableList.append(listItem);
-            }
-        });
-    }
+                    tableList.append(listItem);
+                }
+            });
+        }
 
-    function runWaitListQuery() {
+        function runWaitListQuery() {
 
-        $.ajax({ url: "/api/waitlist", method: "GET" })
-        .then(function(waitData) {
-            console.log(waitData);
-            console.log("----------------------------------");
+            $.ajax({ url: "/api/waitlist", method: "GET" })
+            .then(function (waitData) {
+                console.log(waitData);
+                console.log("----------------------------------");
 
-            for (var i=0; i<waitData.length; i++) {
-                var waitList = $("#waitList");
+                for (var i = 0; i < waitData.length; i++) {
+                    var waitList = $("#waitList");
 
-                var listItem = $("<li class='list-group-item mt-4'>");
-                
-                listItem.append(
-                    $("<h2>").text("Table #" + (i + 1)),
-                    $("<hr>"),
-                    $("<h2>").text("Name: " + waitData[i].customerName),
-                );
+                    var listItem = $("<li class='list-group-item mt-4'>");
 
-                waitList.append(listItem);
-            }
-        });
-    }
+                    listItem.append(
+                        $("<h2>").text("Table #" + (i + 1)),
+                        $("<hr>"),
+                        $("<h2>").text("Name: " + waitData[i].customerName),
+                    );
 
-    function clearTable() {
-        alert("Clearing...");
+                    waitList.append(listItem);
+                }
+            });
+        }
 
-        $.ajax({ url: "/api/clear", method: "POST" }).then(function() {
-            $("#waitList").empty();
-            $("#tableList").empty();
-        });
-    }
+        function clearTable() {
+            alert("Clearing...");
 
-    $("#clear").on("click", clearTable);
+            $.ajax({ url: "/api/clear", method: "POST" }).then(function () {
+                $("#waitList").empty();
+                $("#tableList").empty();
+            });
+        }
 
-    runTableQuery();
-    runWaitListQuery();
+        $("#clear").on("click", clearTable);
 
-</script>
+        runTableQuery();
+        runWaitListQuery();
+
+    </script>
 </body>

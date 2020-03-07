@@ -17,29 +17,29 @@ app.use(express.json());
 
 
 // Routes
-app.get("/", function(req, res) {
-    res.sendFile(path.join(`${__dirname}/index.html`));
+app.get("/", function (req, res) {
+  res.sendFile(path.join(`${__dirname}/index.html`));
 });
 
-app.get("/reserve", function(req, res) {
+app.get("/reserve", function (req, res) {
   res.sendFile(`${__dirname}/reserve.html`);
 });
 
-app.get("/tables", function(req, res) {
+app.get("/tables", function (req, res) {
   res.sendFile(`${__dirname}/tables.html`);
 });
 
-app.get("/api/tables", function(req, res) {
-    return res.json(tables);
-  });
+app.get("/api/tables", function (req, res) {
+  return res.json(tables);
+});
 
-  app.get("/api/waitlist", function(req, res) {
-    return res.json(waitlist);
-  });
+app.get("/api/waitlist", function (req, res) {
+  return res.json(waitlist);
+});
 
 // Handles User Submitting Reservation
 
-app.post(`/api/tables`, function(req, res) {
+app.post(`/api/tables`, function (req, res) {
   const newReservation = req.body;
   const tablesLen = tables.length;
 
@@ -47,17 +47,18 @@ app.post(`/api/tables`, function(req, res) {
 
   if (tablesLen < 5) {
     tables.push(newReservation);
+    alert("Congrats! Your table is officially booked.");
   }
 
   else {
     waitlist.push(newReservation);
+    alert("You have been added to the waitlist.");
   }
 
 });
 
 
-app.listen(PORT, function() {
-    console.log("WOrking on " + PORT)
-    console.log(tables)
+app.listen(PORT, function () {
+  console.log("WOrking on " + PORT);
 })
 
