@@ -12,3 +12,5 @@ const waitlist = [
         "customerID":"asdfdd"
     }
 ];
+
+module.exports = waitlist;
