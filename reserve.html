@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tables Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">
+                <span class="fa fa-fire"></span>
+                Hot Restaurant
+            </h1>
+            <hr>
+            <h2 class="text-center">Reserve Your Spot</h2>
+            <br>
+            <div class="text-center">
+                <a href="/tables">
+                    <button class="btn btn-lg btn-primary">
+                        <span class="fa fa-list-alt"></span>
+                        View Tables
+                    </button>
+                </a>
+                <a href="/">
+                    <button class="btn btn-lg btn-primary">
+                        <span class="fa fa-home"></span>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="container">
+            <form method="POST" role="form">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" id="phone">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="userid">User ID (Public Name)</label>
+                            <input type="text" class="form-control" id="userid">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-md" id="submit">Submit Reservation</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>
+                    <a href="/api/tables">API Table Link</a>
+                    |
+                    <a href="/api/waitlist">API Wait List</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(
+            $(`#submit`).on(`click`, function(event) {
+                event.preventDefault();
+                const newReservation = {
+                    customerName: $(`#name`).val().trim(),
+                    phoneNumber: $(`#phone`).val().trim(),
+                    customerEmail: $(`#email`).val().trim(),
+                    customerID: $(`#userid`).val().trim()
+                };
+
+                $.post(`/api/tables`, newReservation)
+            })
+        );
+    </script>
+</body>
