@@ -27,10 +27,9 @@
                         View Tables
                     </button>
                 </a>
-                <a href="/reserve">
-                    <button class="btn btn-lg btn-danger">
-                        <span class="fa fa-credit-card"></span>
-                        Make Reservation
+                <a href="/">
+                    <button class="btn btn-lg btn-primary">
+                        <span class="fa fa-home"></span>
                     </button>
                 </a>
             </div>
@@ -88,8 +87,51 @@
                     $("<h2>").text("Email: " + tableData[i].customerEmail),
                     $("<h2>").text("Phone: " + tableData[i].phoneNumber)
                 );
+
+                tableList.append(listItem);
             }
-        }
+        });
     }
+
+    function runWaitListQuery() {
+
+        $.ajax({ url: "/api/waitlist", method: "GET" })
+        .then(function(waitData) {
+            console.log(waitData);
+            console.log("----------------------------------");
+
+            for (var i=0; i<waitData.length; i++) {
+                var waitList = $("#waitList");
+
+                var listItem = $("<li class='list-group-item mt-4'>");
+                
+                listItem.append(
+                    $("<h2>").text("Table #" + (i + 1)),
+                    $("<hr>"),
+                    $("<h2>").text("ID: " + waitData[i].customerID),
+                    $("<h2>").text("Name: " + waitData[i].customerName),
+                    $("<h2>").text("Email: " + waitData[i].customerEmail),
+                    $("<h2>").text("Phone: " + waitData[i].phoneNumber)
+                );
+
+                waitList.append(listItem);
+            }
+        });
+    }
+
+    function clearTable() {
+        alert("Clearing...");
+
+        $.ajax({ url: "/api/clear", method: "POST" }).then(function() {
+            $("#waitList").empty();
+            $("#tableList").empty();
+        });
+    }
+
+    $("#clear").on("click", clearTable);
+
+    runTableQuery();
+    runWaitListQuery();
+
 </script>
 </body>
