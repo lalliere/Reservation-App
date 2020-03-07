@@ -37,6 +37,24 @@ app.get("/api/tables", function(req, res) {
     return res.json(waitlist);
   });
 
+// Handles User Submitting Reservation
+
+app.post(`/api/tables`, function(req, res) {
+  const newReservation = req.body;
+  const tablesLen = tables.length;
+
+  console.log(tablesLen);
+
+  if (tablesLen < 5) {
+    tables.push(newReservation);
+  }
+
+  else {
+    waitlist.push(newReservation);
+  }
+
+});
+
 
 app.listen(PORT, function() {
     console.log("WOrking on " + PORT)
