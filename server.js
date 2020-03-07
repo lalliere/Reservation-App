@@ -18,7 +18,7 @@ app.use(express.json());
 
 // Routes
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(`${__dirname}/index.html`));
 });
 
 app.get("/reserve", function(req, res) {
@@ -58,4 +58,6 @@ app.post(`/api/tables`, function(req, res) {
 
 app.listen(PORT, function() {
     console.log("WOrking on " + PORT)
+    console.log(tables)
 })
+

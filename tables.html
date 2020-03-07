@@ -21,14 +21,14 @@
             <h2 class="text-center">We only have 5 tables! Book your seat before they are all gone!</h2>
             <br>
             <div class="text-center">
-                <a href="/tables">
-                    <button class="btn btn-lg btn-primary">
-                        <span class="fa fa-list-alt"></span>
-                        View Tables
+                <a href="/reserve">
+                    <button class="btn btn-lg btn-danger">
+                        <span class="fa fa-credit-card"></span>
+                        Make Reservation
                     </button>
                 </a>
                 <a href="/">
-                    <button class="btn btn-lg btn-primary">
+                    <button class="btn btn-lg btn-light">
                         <span class="fa fa-home"></span>
                     </button>
                 </a>
@@ -82,10 +82,7 @@
                 listItem.append(
                     $("<h2>").text("Table #" + (i + 1)),
                     $("<hr>"),
-                    $("<h2>").text("ID: " + tableData[i].customerID),
                     $("<h2>").text("Name: " + tableData[i].customerName),
-                    $("<h2>").text("Email: " + tableData[i].customerEmail),
-                    $("<h2>").text("Phone: " + tableData[i].phoneNumber)
                 );
 
                 tableList.append(listItem);
@@ -108,10 +105,7 @@
                 listItem.append(
                     $("<h2>").text("Table #" + (i + 1)),
                     $("<hr>"),
-                    $("<h2>").text("ID: " + waitData[i].customerID),
                     $("<h2>").text("Name: " + waitData[i].customerName),
-                    $("<h2>").text("Email: " + waitData[i].customerEmail),
-                    $("<h2>").text("Phone: " + waitData[i].phoneNumber)
                 );
 
                 waitList.append(listItem);
